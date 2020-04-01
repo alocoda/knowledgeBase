@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row mt-3">
         <div class="col-md">
-            <h2>KnowledgeBase</h2>
+            <h2>knowledgeBase</h2>
         </div>
         <div class="col-md">
             <form action="/login" method="POST">
@@ -28,23 +28,24 @@
             <form action="/signup" method="POST">
                 <div class="form-row">
                     <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="First Name" name="fname">
+                        <input type="text" class="form-control" placeholder="First Name" name="fname" required>
                     </div>
                     <div class="form-group col-md-6">
-                        <input type="text" class="form-control" placeholder="Last Name" name="lname">
+                        <input type="text" class="form-control" placeholder="Last Name" name="lname" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Email" name="email">
+                    <input type="email" class="form-control" placeholder="Email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Password" name="pwd">
+                    <input id="pwd1" type="password" class="form-control" placeholder="Password" name="pwd" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Confirm Password" name="cpwd">
+                    <input id="pwd2" type="password" class="form-control" placeholder="Confirm Password" name="cpwd" required>
                 </div>
                 <button type="submit" class="btn btn-primary">Signup</button>
             </form>
         </div>
     </div>
 </div>
+<script src="/scripts/validate.js"></script>
