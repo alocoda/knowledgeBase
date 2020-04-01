@@ -1,10 +1,16 @@
 const db = require("../db/db");
 
 
-userLogin = user => {
-    return db.query(
-        // login user
-    );
+userLogin = async (email) => {
+    const query = `SELECT password FROM UserProfile WHERE email = $1`;
+    const values = [ email ];
+    try {
+        const res = await db.query(query, values);
+        return res.rows.length > 0 ? res.rows[0].password : '';
+    } catch (err) {
+        console.log(err.stack);
+    }
+    return '';
 };
 
 userSignUp = async (user) => {

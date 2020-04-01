@@ -2,11 +2,16 @@ const mod = require("../models/userData");
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-exports.login = (req, res, next) => {
+exports.login = async (req, res, next) => {
     let email = req.body.email;
-    let salt = await bcrypt.genSalt(saltRounds);
-    let hashedPwd = await bcrypt.hash(req.body.pwd, salt);
-    //TODO: authenticate user
+    let pwd = req.body.pwd;
+    let hash = await mod.login(email);
+    let authenticated = await bcrypt.compare(pwd, hash);
+    if(authenticated) {
+        res.send('Authenticated!');
+    } else {
+        res.send('No user found');
+    }
 }
 
 exports.signup = async (req, res, next) => {
