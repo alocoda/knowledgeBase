@@ -1,0 +1,104 @@
+<div class="container">
+    <div class="nav container-flex-horz">
+        <form action="/home" method="GET">
+            <input type="image" id="nav-logo" src="/assets/logo.png">
+        </form>
+        <form action="/search" method="GET">
+            <input id="search" placeholder="Search" type="search">
+        </form>
+        <form id="logout-form" action="/logout" method="GET">
+            <button id="logout-button">logout</button>
+        </form>
+    </div>
+
+
+
+<div class="container-flex-horz container-flex-horz-center">
+    <div id="profile-section" class="container-flex-vert ">
+        <form action="/profile" method="GET">
+            <input type="image" class="profile-image" src="https://randomuser.me/api/portraits/men/51.jpg" alt="">
+        </form>
+        <h3>Sean Williamson</h3>
+        <p>10 year of expreice working in tech</p>
+        <form action="/posts" method="GET" class="option-form">
+            <button class="option" type="submit">Posts</button>
+            <p class="option-value">3</p>
+        </form>
+        <form action="/Messages" method="GET" class="option-form">
+            <button class="option" type="submit">Messages</button>
+            <p class="option-value">3</p>
+        </form>
+        <form action="/like" method="GET" class="option-form">
+            <button class="option" type="submit">Likes</button>
+            <p class="option-value" s>3</p>
+        </form>
+        <form action="/edit" method="GET" id="edit-profile" class="option-form">
+            <button class="option" type="submit">Edit Profile</button>
+        </form>
+    </div>
+
+
+
+    <div id="post-board" class="container-flex-vert">
+        <h3 id="question">Whats your question today?</h3>
+        <form action="/newpost" method="POST" class="container-flex-vert container-align-start">
+            <input id="subject" type="text" placeholder="Subject">
+            <textarea id="details" type="text" placeholder="Explain in details..."></textarea>
+            <div class="container-flex-horz">
+                <select class="topic">
+                    <option value="php"> php</option>
+                    <option value="nodejs">nodejs</option>
+                    <option value="java">java</option>
+                    <option value="sql">sql</option>
+                    <option value="zend">zend</option>
+                </select>
+                <button id="post-timeline">Post to timeline</button>
+            </div>
+        </form>
+
+
+        <form action="/search" method="GET" class="container-flex-horz">
+            <label id="search-label">Search by topic</label>
+            <select class="topic">
+                <option value="php"> php</option>
+                <option value="nodejs">nodejs</option>
+                <option value="java">java</option>
+                <option value="sql">sql</option>
+                <option value="zend">zend</option>
+            </select>
+            <button id="go">go-></button>
+        </form>
+
+
+
+
+        <div class="container-flex-vert">
+            <h5 id="latest">Latest Discussions</h5>
+            <div class="container-flex-horz">
+                <form action="/profile" method="GET" >
+                    <input type="image" class="post-image" src="https://randomuser.me/api/portraits/men/51.jpg" alt="">
+                </form>
+                <div id="details-section" class="container-flex-vert">
+                    <div class="container-flex-horz">
+                        <h5 class="post-topic">User settings deleted</h5>
+                        <p class="post-label">nodejs</p>
+                    </div>
+                    <p class="post-details">Pellentesque habitant morbi tristique senectus et netus et malesuada fames
+                        ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante.
+                        Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat
+                        eleifend leo.</p>
+                    <form action="/posts" method="GET" id='post-extra-data' class="container-flex-horz">
+                        <label class="post-date">20 oct 2019</label>
+                        <button class="post-replies">replies</button>
+                    </form>
+                </div>
+            </div>
+            <form id="OMG" action="/next" method="GET">
+                    <button id="next">Next-></button>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+</div>
