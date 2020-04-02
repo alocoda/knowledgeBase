@@ -1,41 +1,51 @@
 <div class="container">
-    <div class="row">
-        <div class="col">
-            <h6>KnowledgeBase</h6>
+    <div class="row mt-3">
+        <div class="col-md">
+            <h2>knowledgeBase</h2>
         </div>
-        <div class="col">
+        <div class="col-md">
             <form action="/login" method="POST">
-                <div class="form-group">
-                    <input type="text" name="email" placeholder="Email">
-                    <input type="password" name="password" placeholder="Password">
-                    <button type="submit" class="btn btn-primary">Login</button>
+                <div class="form-row align-items-center">
+                    <div class="col-auto">
+                        <input type="email" class="form-control mb-2" name="email" placeholder="Email" required>
+                    </div>
+                    <div class="col-auto">
+                        <input type="password" class="form-control mb-2" name="pwd" placeholder="Password" required>
+                    </div>
+                    <div class="col-auto">
+                        <button type="submit" class="btn btn-primary mb-2">Login</button>
+                    </div>
                 </div>
             </form>
         </div>
     </div>
-    <div class="row">
-        <div class="col">
-            <img id="kbimg" style="width: 260px; height:260px" src="/assets/kb.jpg" alt="books">
+    <div class="row mt-5">
+        <div class="col-md">
+            <img id="kbimg" class="img-fluid" style="width: 460px; height:460px" src="/assets/kb.jpg" alt="books">
         </div>
-        <div class="col">
+        <div class="col-md">
+            <h2 class="pb-5">Join the worlds largest community for knowledge sharing</h2>
             <form action="/signup" method="POST">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="First Name">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" placeholder="First Name" name="fname" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input type="text" class="form-control" placeholder="Last Name" name="lname" required>
+                    </div>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Last Name">
+                    <input type="email" class="form-control" placeholder="Email" name="email" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Email">
+                    <input id="pwd1" type="password" class="form-control" placeholder="Password" name="pwd" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Password">
+                    <input id="pwd2" type="password" class="form-control" placeholder="Confirm Password" name="cpwd" required>
                 </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Confirm Password">
-                </div>
-                <button class="btn btn-primary">Signup</button>
+                <button type="submit" class="btn btn-primary">Signup</button>
             </form>
         </div>
     </div>
 </div>
+<script src="/scripts/validate.js"></script>
