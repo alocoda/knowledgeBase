@@ -1,0 +1,15 @@
+<div class="container">
+  
+              send message page
+                          <img class="img-fluid" src="{{imageurl}}">
+                <p>receiverid</p>
+              {{receiverid}}
+
+              <form method="POST" action="/sendFirstMessageToUser">
+                  
+                    <input type="text" name="subject" placeholder="subject" required>
+                    <textarea name="details" placeholder="message details..." required></textarea>
+                    <input type="hidden" name="receiverid" value="{{receiverid}}">
+                    <button type="submit">Message</button>
+                </form>
+</div>

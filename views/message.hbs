@@ -1,0 +1,48 @@
+<!-- way for script to access data-->
+<div id="convoList"> 
+    {{#each conversation}}
+    <p>senderid:{{this.senderid}}, sendername:{{this.sendername}}, receiverid:{{this.receiverid}}, receivername:{{this.receivername}}, subject:{{this.subject}}, message{{this.message}},timestamp:{{this.ts}} </p>
+    {{/each}}
+    adsf
+</div>
+<!-- -->
+<div class="container">
+    
+    <div> search bar</div>
+
+
+    <div id="chat">
+       
+
+
+        <div class="sidebar">
+           flex the sidebar as a column from up to down.
+        </div>
+
+
+
+
+        <div class="main">
+            <div id="previousMessages">
+                
+            </div>
+
+            <div id="sendMessageContainer">
+                <!--might not need this form -->
+
+                <form>
+                    <textarea  id="msg"  placeholder="Write a message..."></textarea>
+                    <input type="hidden" id="conversation_id">
+                    <input type="hidden" id="receiver_id">
+                    <input type="hidden" id="sender_id" value="{{sender_id}}">
+                    <button type='button'  onclick="send()">Send</button>
+
+                </form>
+
+            </div>
+           
+        </div>
+
+    </div>
+</div>
+<script src="/scripts/messageManipulator.js"></script>
