@@ -1,0 +1,40 @@
+<div class = "profile">
+    {{!-- {{<nav}} --}}
+    <div class = "userInfo--profile">
+        <div class = "userBasicInfo--profile">
+            <img src = {{profileInfo.imageurl}} class = "profilePic--profile">
+            <br/>
+            <div class = "userName--profile">{{profileInfo.firstname}} {{profileInfo.lastname}}</div>
+            <br/>
+            <div>{{profileInfo.about}}</div>
+            <br/>
+            <div>{{profileInfo.country}}</div>
+            </div>
+         <div class = "userPostInfo--profile">
+            <button class = "button--profile" id = "btnMsg--profile">Message</button>
+            <br/>
+            <div class = "numLike--profile">{{profileInfo.round}} Likes</div> 
+            <form action = "/addLike/{{profileInfo.userprofileid}}" method = "post">
+                <button class = "button--profile" id = "btnAddLike--profile" type = "submit">+</button>
+            </form>
+            <br/>
+             <div class = "numPost--profile">{{numPost.count}} posts</div>
+        </div>
+    </div>
+    <div class="UserPost--profile">
+        <p>All posts by {{profileInfo.firstname}}</p>
+        <div id = "postList--profile">
+            {{#each posts}}
+            <div class = "post--profile">
+                <img src = {{this.imageurl}}>
+                <div class = "postDetail--profile">
+                    <div class = "title--profile">{{this.title}}</div>
+                    <div class = "topic--profile">{{this.topic}}</div>
+                    <p class = "Explanation--profile">{{this.explanation}}</p>
+                    <div class = "date--profile">{{this.to_char}}</div>
+                    <a href = "/post/{{this.postid}}"><div class = "numReply--profile">{{this.count}} replies</div></a>
+                </div>
+            </div>
+            {{/each}}
+        </div>     
+</div>
