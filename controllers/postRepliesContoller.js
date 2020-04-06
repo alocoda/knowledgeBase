@@ -1,0 +1,1 @@
+let mod = require('../models/userProfile');
