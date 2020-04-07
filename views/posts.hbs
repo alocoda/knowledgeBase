@@ -1,0 +1,25 @@
+{{>_nav}}
+
+<div class="post-margin">
+{{#each post}}
+    <div class="container-flex-vert post-between-margin">
+        <div class="container-flex-horz">
+            <form action="/profile" method="GET">
+                <input type="image" class="post-image" src="{{this.imageurl}}" alt="">
+                <input type="hidden" name="profileid"  value="{{this.userprofileid}}">
+            </form>
+            <div id="details-section" class="container-flex-vert">
+                <div class="container-flex-horz">
+                    <h5 class="post-topic">{{this.title}}</h5>
+                    <p class="post-label">{{this.topic}}</p>
+                </div>
+                <p class="post-details">{{this.explanation}}</p>
+                <form action="/reply" method="GET" id='post-extra-data' class="container-flex-horz">
+                    <label class="post-date">{{this.date}}</label>
+                    <button class="post-replies">replies {{this.c}}</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{{/each}}
+</div>

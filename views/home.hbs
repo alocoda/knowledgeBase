@@ -1,0 +1,107 @@
+
+
+{{>_nav}}
+<div class="container-flex-horz container-flex-horz-center">
+    <div id="profile-section" class="container-flex-vert ">
+        <form action="/profile" method="GET">
+            <input type="image"   class="profile-image" src="{{pdata.imageurl}}" alt="">
+            <input type="hidden" name="profileid"  value="{{pdata.userprofileid}}">
+        </form>
+        <h4>{{pdata.firstname}} {{pdata.lastname}}</h4>
+        <p id="about">{{pdata.about}}</p>
+        <form action="/profile" method="GET" class="option-form">
+            <button class="option" type="submit">Posts</button>
+            <p class="option-value">{{pdata.count}}</p>
+            <input type="hidden" name="profileid"  value="{{pdata.userprofileid}}">
+        </form>
+        <form action="/Messages" method="GET" class="option-form">
+            <button class="option" type="submit">Messages</button>
+            <p class="option-value">{{pdata.messages}}</p>
+        </form>
+        <form action="/like" method="GET" class="option-form">
+            <button id='like' type="submit">Likes</button>
+            <p class="option-value" s>{{pdata.likes}}</p>
+        </form>
+        <form action="/edit" method="GET" id="edit-profile" class="option-form">
+            <button class="option" type="submit">Edit Profile</button>
+        </form>
+    </div>
+
+
+
+    <div id="post-board" class="container-flex-vert">
+        <h3 id="question">Whats your question today?</h3>
+        <form action="/newpost" method="POST" class="container-flex-vert container-align-start">
+            <input id="subject" name="title" type="text" placeholder="Subject">
+            <textarea id="details" name="explanation" type="text" placeholder="Explain in details..."></textarea>
+            <div class="container-flex-horz">
+                <select name="topic" class="topic">
+                    <option value="php"> php</option>
+                    <option value="nodejs">nodejs</option>
+                    <option value="java">java</option>
+                    <option value="sql">sql</option>
+                    <option value="zend">zend</option>
+                </select>
+                <button id="post-timeline">Post to timeline</button>
+            </div>
+        </form>
+
+
+        <form action="/filter" method="GET" class="container-flex-horz">
+            <label id="search-label">Search by topic</label>
+            <select name = "topic" class="topic">
+                <option value="php"> php</option>
+                <option value="nodejs">nodejs</option>
+                <option value="java">java</option>
+                <option value="sql">sql</option>
+                <option value="zend">zend</option>
+            </select>
+            <button id="go">go-></button>
+        </form>
+
+
+
+
+        <div class="container-flex-vert">
+            <h6 id="latest">Latest Discussions</h6>
+            {{#each post}}
+            <div class="container-flex-horz">
+                <form action="/profile" method="GET">
+                    <input type="image" class="post-image" src="{{this.imageurl}}" alt="">
+                    <input type="hidden" name="profileid"  value="{{this.userprofileid}}">
+                </form>
+                <div id="details-section" class="container-flex-vert fixed-height">
+                    <div class="container-flex-horz">
+                        <h6 class="post-topic">{{this.title}}</h6>
+                        <div class="post-label">{{this.topic}}</div>
+                    </div>
+                    <p class="post-details">{{this.explanation}}</p>
+                    <form action="/posts" method="GET" id='post-extra-data' class="container-flex-horz">
+                        <label class="post-date">{{this.date}}</label>
+                        <button class="post-replies">replies {{this.c}}</button>
+                    </form>
+                </div>
+            </div>
+            {{/each}}
+             <div class="container-flex-horz OMG">
+                 <form  action="/prevpost" method="GET">
+                    <button type="submit" style="display:{{prevhidden}}" class="next"><-Prev</button>
+                    <input type="hidden" name="prev" value="{{prev}}">
+                </form>
+                <form  action="/nextpost" method="GET">
+                    <button type="submit" style="display: {{nexthidden}}" class="next">Next-></button>
+                    <input type="hidden" name="next" value="{{next}}">
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+     
+
+</div>
+
+
+</div>
+
