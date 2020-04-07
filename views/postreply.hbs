@@ -1,0 +1,19 @@
+<div class = "postReplies--post">
+     <div class = "post--post">
+        <img src = {{postDetail.imageurl}}>
+        <div class = "postDetail--post">
+            <div class = "title--post">{{postDetail.title}}</div>
+            <div class = "topic--post">{{postDetail.topic}}</div>
+            <p class = "Explanation--post">{{postDetail.explanation}}</p>
+        </div>
+     </div>
+     <div class = "replies--post">
+         {{#each postReplies}}
+         <div class = "replyDetail--post">
+            <img src = {{this.imageurl}}>
+            <div class = "replyBody--post">{{this.body}}</div>
+         </div>
+         {{/each}}
+     </div>
+</div>
+            

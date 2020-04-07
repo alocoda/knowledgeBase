@@ -1,0 +1,18 @@
+.postReplies--post img {
+    border: 3px solid #F0F3F4;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px 0 rgba(100, 100, 100, 0.2), 0 3px 10px 0 rgba(100, 100, 100, 0.19);
+}
+
+/*!!! Post !!!*/
+.post--post img {
+    height: 150px;
+    width: 150px;
+}
+
+
+/*!!! Replies !!!*/
+.replyDetail--post img {
+    height: 125px;
+    width: 125px;
+}
