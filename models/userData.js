@@ -1,5 +1,16 @@
-const db = require("../db/db");
+let db = require("../db/db");
 
+emailInUse = async (email) => {
+    const query = `SELECT * FROM UserProfile WHERE email = $1`;
+    const values = [ email ];
+    try {
+        const res = await db.query(query, values);
+        return (res.rows.length > 0) ? true : false;
+    } catch (err) {
+        console.log(err.stack);
+    }
+    return true;
+}
 
 userLogin = async (email) => {
     const query = `SELECT password FROM UserProfile WHERE email = $1`;
@@ -38,5 +49,6 @@ userSignUp = async (user) => {
 
 module.exports = {
     signup: userSignUp,
-    login: userLogin
+    login: userLogin,
+    email: emailInUse
 };

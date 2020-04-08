@@ -1,0 +1,98 @@
+.postReplies--replies {
+    width: 50%;
+    margin: 20px auto;
+    font-family: "Arial";
+    color: #838383;
+}
+
+.profileImg--replies {
+    border: 3px solid #F0F3F4;
+    border-radius: 50%;
+    box-shadow: 0 2px 4px 0 rgba(100, 100, 100, 0.2), 0 3px 10px 0 rgba(100, 100, 100, 0.19);
+}
+
+/*!!! Post !!!*/
+.post--replies {
+    display: flex;
+    margin-bottom: 25px;
+    font-size: 13pt;
+}
+
+.post--replies div{
+    display: inline-block;
+}
+
+.profileImgPost--replies {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+}
+
+.postDetail--replies {
+    width: 100%;
+    margin-right: 100px; 
+}
+
+.title--replies {
+    margin: 0;
+    width: 80%;
+}
+
+.topic--replies {
+    padding-left: 5px;
+    color: #97DEF0;
+    border: 1px solid #97DEF0;
+    width: 80px; 
+}
+
+.Explanation--replies{
+    padding-left: 30px;
+    padding-top: 5px;
+    width: 100%;
+    font-size: 12pt;
+    overflow-wrap: break-word;
+}
+
+/*!!! Replies !!!*/
+.replies--replies {
+    margin-left: 125px;
+    margin-right: 125px;
+}
+
+.replyDetail--replies {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.profileImgReply--replies {
+    height: 100px;
+    width: 100px;
+    margin-right: 15px;
+}
+
+.replyBody--replies {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+/* !!! your reply !!! */
+#commentBody--replies{
+    width: 100%;
+    height: 75px;
+    resize: none;
+    color: #838383;
+    margin-top: 10px;
+}
+
+#btn_comment--replies {
+    background: #0A94DE;
+    border: none;
+    color: #ffffff;
+    padding: 5px 10px;
+    float: right;
+}
+
+#btn_comment--replies:hover {
+    background: #0A87C9;
+}
