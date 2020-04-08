@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="message_send_message_container">
+      <img class="messages_round_corner_image_icon" class="img-fluid "  src="{{imageurl}}">
+
+
+
+          <form method="POST" action="/sendFirstMessageToUser" class="messages_send_messages_form_details">     
+            <input type="text" name="subject" placeholder="subject" required>
+            <textarea name="details" placeholder="message details..." required></textarea>
+            <input type="hidden" name="receiverid" value="{{receiverid}}">
+            <button type="submit" id="buttonMessage" class="text-left ">Message</button>
+          </form>
+    </div>
+</div>

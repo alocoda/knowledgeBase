@@ -1,0 +1,164 @@
+.messages_round_corner_image_icon{
+    border-radius: 50%;
+    width:100px;
+    height:100px;
+    margin:10px;
+}
+.message_send_message_container{
+    display:flex;
+
+}
+
+.messages_send_messages_form_details{
+    display:flex;
+    flex-direction: column;
+    margin:10px;
+}
+.messages_send_messages_form_details input{
+    width:200px;
+}
+.messages_send_messages_form_details textarea{
+    width:300px;
+    height:200px;
+    margin-top:20px;
+}
+.messages_send_messages_form_details button{
+    margin-top:10px;
+    color:white;
+    background-color:#90cff0;
+    border-color:#80bff0;
+    border-style:solid;
+    width:150px;
+
+}
+.subjectdiv img{
+    width:80px;
+    height:80px;
+    margin:10px;
+    border-radius: 50%;
+}
+.subjectdiv {
+    display:flex;
+    width:400px;
+    height:100px;
+    margin:10px;
+    border-bottom: solid silver;
+}
+#SubjectProfileSide{
+    display:flex;
+    flex-direction:column;
+}
+
+.rightPartOfSubject{
+    display:flex;
+    flex-direction: column;
+    width:250px;
+
+}
+.nameheadingtime{
+    display:flex;
+    justify-content: space-between;
+}
+.nameheadingtimetext{
+    display:flex;
+    
+    justify-content: space-between;
+}
+.nameheadingtimetext h6{
+    color:gray;
+    margin-top:8px;
+    margin-left:16px;
+    font-size:12px;
+}
+.nameheadingtimetext p{
+
+}
+.rightPartOfSubjecttext{
+    display:flex;
+    flex-direction: column;
+    border:solid green;
+}
+
+.messagediv img{
+    width:50px;
+    height:50px;
+    border-radius: 50%;
+    margin:10px;
+}
+.messagediv {
+    display:flex;
+    width:500px;
+
+    
+}
+#chat{
+    display:flex;
+    width:975px;
+    padding:10px;
+    border:solid 1px silver;
+    border-bottom:solid 1px silver;
+    background:rgba(255,255,255);
+
+}
+
+
+
+.linebehindword {
+
+}
+.linebehindword span:after span:before{
+    content:"\00a0\00a0\00a0\00a0\00a0";
+    text-decoration:line-through;
+}
+.timediv {
+    width:500px;
+
+}
+.hide{
+    display:none;
+}
+.messageSidebar{
+    width:460px;
+    height:800px;
+    overflow: scroll;
+    border-right:solid 1px silver;
+
+}
+.messageSidebar::-webkit-scrollbar{
+    display:none;
+}
+
+.main{
+    width:530px;
+    height:800px;
+}
+#previousMessages{
+    height:650px;
+    width:530px;
+    overflow:scroll;
+    border-style:magenta;
+}
+#previousMessages::-webkit-scrollbar{
+    display:none;
+}
+.nameheadingtimetextcontainer{
+    display:inline-block;
+}
+.timediv{
+    text-align:center;
+    margin-left:5px;
+    border-bottom:solid 1px silver;
+    border-top:solid 1px silver;
+
+}
+#ta {
+    width:525px;
+    height:110px;
+}
+#sendbtn{
+    float:right;
+    background:rgba(00,220,240,0.5)
+}
+.container_messages{
+background-color:rgba(254,254,254);
+}
