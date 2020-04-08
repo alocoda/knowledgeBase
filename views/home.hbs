@@ -66,7 +66,7 @@
             <h6 id="latest">Latest Discussions</h6>
             {{#each post}}
             <div class="container-flex-horz">
-                <form action="/profile" method="GET">
+                <form action="/profile/{{this.userprofileid}}" method="GET">
                     <input type="image" class="post-image" src="{{this.imageurl}}" alt="">
                     <input type="hidden" name="profileid"  value="{{this.userprofileid}}">
                 </form>
@@ -76,7 +76,7 @@
                         <div class="post-label">{{this.topic}}</div>
                     </div>
                     <p class="post-details">{{this.explanation}}</p>
-                    <form action="/posts" method="GET" id='post-extra-data' class="container-flex-horz">
+                    <form action="/post/{{this.postid}}" method="GET" id='post-extra-data' class="container-flex-horz">
                         <label class="post-date">{{this.date}}</label>
                         <button class="post-replies">replies {{this.c}}</button>
                     </form>

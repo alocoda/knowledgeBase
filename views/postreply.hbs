@@ -1,0 +1,31 @@
+ {{>_nav}}
+<div class = "postReplies--replies">
+     <div class = "post--replies">
+        <form action="/profile/{{postDetail.authorid}}" method="get">
+            <input type = "image" src = {{postDetail.imageurl}} class = "profileImg--replies profileImgPost--replies">
+        </form>
+        <div class = "postDetail--replies">
+            <div class = "title--replies">{{postDetail.title}}</div>
+            <div class = "topic--replies">{{postDetail.topic}}</div>
+            <p class = "Explanation--replies">{{postDetail.explanation}}</p>
+        </div>
+     </div>
+     <div class = "replies--replies">
+         {{#each postReplies}}
+         <div class = "replyDetail--replies">
+            <form action="/profile/{{this.authorid}}" method="get">
+                <input type = "image" src = {{this.imageurl}} class = "profileImg--replies profileImgReply--replies">
+            </form>
+            <div class = "replyBody--replies">{{this.body}}</div>
+         </div>
+         {{/each}}
+         <form action = "/post/{{postDetail.postid}}/reply" method = "post" class = "comment--replies">
+             <textarea type = "text" placeholder = "add your reply ......" id = "commentBody--replies" name = "replyDetail"></textarea>
+             <button type = "submit" id = "btn_comment--replies" > Comment </button>
+         </form>
+         
+     </div>
+</div>
+
+<script src="/scripts/replies.js"></script>
+            
