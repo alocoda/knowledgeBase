@@ -1,6 +1,5 @@
 const mod = require("../models/userData");
 const bcrypt = require('bcrypt');
-const uuid = require('uuid/v4');
 const saltRounds = 10;
 
 exports.login = async (req, res) => {
@@ -10,7 +9,7 @@ exports.login = async (req, res) => {
     let authenticated = await bcrypt.compare(pwd, hash);
     if (authenticated) {
         req.session.userEmail = email;
-        req.session.SID = uuid();
+        req.session.SID = await mod.getid(email);
         res.redirect("/home");
     } else {
         res.render("index", { loginfailed: true });
