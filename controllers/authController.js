@@ -11,7 +11,7 @@ exports.login = async (req, res) => {
         req.session.userEmail = email;
         res.redirect("/home")
     } else {
-        res.render("index", {loginfailed: true});
+        res.render("index", { loginfailed: true });
     }
 }
 
@@ -26,7 +26,12 @@ exports.signup = async (req, res) => {
     }
     req.session.userEmail = req.body.email
     req.session.user = userObj;
-    res.render("signup");
+    let inUse = await mod.email(req.body.email);
+    if (inUse) {
+        res.render("index", { signupfailed: true })
+    } else {
+        res.render("signup");
+    }
 }
 
 exports.signupdetails = async (req, res) => {
@@ -35,6 +40,10 @@ exports.signupdetails = async (req, res) => {
     userObj.details = req.body.details;
     userObj.country = req.body.country;
     userObj.birthdate = req.body.birthdate;
-    await mod.signup(userObj);
+    try {
+        await mod.signup(userObj);
+    } catch (err) {
+        console.log(err);
+    }
     res.redirect("/home");
 }

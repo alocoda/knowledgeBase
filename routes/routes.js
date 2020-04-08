@@ -11,6 +11,10 @@ router.get('/login', (req, res) => {
     res.redirect('/');
 });
 
+router.get('/signup', (req, res) => {
+    res.redirect('/');
+});
+
 router.post('/login', authController.login);
 
 router.post('/signup', authController.signup);

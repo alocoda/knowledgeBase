@@ -42,6 +42,11 @@
                 <div class="form-group">
                     <input type="email" class="form-control" placeholder="Email" name="email" required>
                 </div>
+                {{#if signupfailed}}
+                <div class="alert alert-danger" role="alert">
+                    Email is in use
+                </div>
+                {{/if}}
                 <div class="form-group">
                     <input id="pwd1" type="password" class="form-control" placeholder="Password" name="pwd" required>
                 </div>
