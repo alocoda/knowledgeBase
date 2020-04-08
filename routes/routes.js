@@ -21,6 +21,7 @@ router.post('/signupdetails', authController.signupdetails);
 
 router.get('/sendMessage', messageController.sendMessage);
 router.post('/sendFirstMessageToUser',messageController.sendFirstMessageToUser);
+router.post('/sendMessageToUser', messageController.sendMessageToUser);
 //router.post('/beginMessage', messageController.beginMessageMessage);
 router.get('/message', messageController.messages);
 

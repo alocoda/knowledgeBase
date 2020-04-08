@@ -1,7 +1,8 @@
 const db = require("../db/db");
 
 
-//db.query("CREATE TABLE messages (messageid SERIAL PRIMARY KEY, senderid integer NOT NULL, sendername text, receivername text, receiverid integer NOT NULL, subject text, body text NOT NULL, ts TIMESTAMP not null)");
+//db.query("CREATE TABLE messages (messageid SERIAL PRIMARY KEY, senderid integer NOT NULL, senderURL text , sendername text, receivername text, receiverURL text, receiverid integer NOT NULL, subject text, body text NOT NULL, ts TIMESTAMP not null)");
+
 //db.query("DROP TABLE messages");
 //console.log("added!");
 
@@ -33,12 +34,12 @@ getAllMessages = async(id) =>{
         console.log("before getting all messages is a success!");
 
         const res = await db.query(query, values);
+        
         //const res = await db.query(query);
 
         console.log(" all messages sent succses!");
         console.log("messages");
         console.log("nani222222sleepy"+res.rows.length);
-
         return res.rows;
     } catch (err) {
         console.log(err.stack);
@@ -50,15 +51,19 @@ getAllMessages = async(id) =>{
 
 createConversation = async(convoObj)=>{
     let sender = await getUserProfile( convoObj.sender);
+    console.log("why are you breaking?" + sender[0].userprofileid);
+
     let receiver = await getUserProfile(convoObj.receiver);
     const query = `INSERT INTO Messages 
-        (senderid, sendername, receiverid, receivername, subject, body, ts)
+        (senderid, senderURL, sendername, receiverid, receiverURL, receivername, subject, body, ts)
         VALUES
-        ($1, $2, $3, $4, $5, $6, to_timestamp(${Date.now()} / 1000.0)) RETURNING *`;
+        ($1, $2, $3, $4, $5, $6, $7, $8, to_timestamp(${Date.now()} / 1000.0)) RETURNING *`;
     const values = [
         convoObj.sender,
+        sender[0].image,
         sender[0].firstname + " " + sender[0].lastname, 
         convoObj.receiver,
+        receiver[0].image,
         receiver[0].firstname + " " + receiver[0].lastname, 
         convoObj.subject,
         convoObj.details
@@ -71,7 +76,7 @@ createConversation = async(convoObj)=>{
         console.log("message sent succses!");
         console.log("nani2"+res.rows[0].subject);
         console.log("nani2"+res.rows[0].messageid);
-
+        
         return res.rows;
         console.log(res.rows);
     } catch (err) {
@@ -79,7 +84,6 @@ createConversation = async(convoObj)=>{
         return null;
     }
 };
-
 
 
 
@@ -108,9 +112,38 @@ getUserProfile = async (id) => {
    return db.query('Select * from userProfile where userprofileid = ' + id);
 }
 */
+createMessage = async(convoObj)=>{
+    let sender = await getUserProfile( convoObj.sender);
+    let receiver = await getUserProfile(convoObj.receiver);
+    const query = `INSERT INTO Messages 
+        (senderid, senderurl, sendername, receiverid, receiverurl, receivername, body, ts)
+        VALUES
+        ($1, $2, $3, $4, $5, $6, $7,  to_timestamp(${Date.now()} / 1000.0)) RETURNING *`;
+    const values = [
+        convoObj.sender,
+        sender[0].imageurl,
+        sender[0].firstname + " " + sender[0].lastname, 
+        convoObj.receiver,
+        receiver[0].imageurl,
+        receiver[0].firstname + " " + receiver[0].lastname, 
+        convoObj.details
+    ];
+    try {
+        console.log("before createMessage sent succses!");
+        const res = await db.query(query, values);
+        console.log("createMessage: message sent succses!");
+        console.log("createMessage nani2"+res.rows[0].subject);
+        console.log("createMessage nani2"+res.rows[0].messageid);
+        return res.rows;
+    } catch (err) {
+        console.log(err.stack);
+        return null;
+    }
+};
 
 module.exports = {
     getUserProfile: getUserProfile,
     createConversation:createConversation,
-    getAllMessages:getAllMessages
+    getAllMessages:getAllMessages,
+    createMessage:createMessage
 };
