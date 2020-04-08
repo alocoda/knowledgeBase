@@ -24,12 +24,12 @@ exports.sendMessage = async (req, res, next) => {
     //TODO make it so ID is from the req body or something idk lol
     
     let  userBeingMessaged = await messageModel.getUserProfile(messageReceiverid);
-    console.log("req.session.userID" + req.session.user);
+    console.log("req.session.userID: ???" + req.session.SID);
     res.render('sendMessage', {
         header: true,
         imageurl: userBeingMessaged[0].imageurl,
         receiverid: userBeingMessaged[0].userprofileid,
-        sender_id: req.session.user
+        sender_id: req.session.SID
     });
 
    console.log("sendMessage : userBeingMessaged" + userBeingMessaged[0].imageurl);
@@ -43,7 +43,7 @@ exports.sendMessage = async (req, res, next) => {
 //!!-- Function: SENDS ALL THE MESSAGSE TO MESSAGES PAGE AND RENDERS THAT MESSAGES PAGE.
 exports.messages = async(req,res,next) =>{
 //    req.session.userId = 7;
-    let allMessages = await messageModel.getAllMessages(req.session.user);
+    let allMessages = await messageModel.getAllMessages(req.session.SID);
     
     //db.query("CREATE TABLE messages (messageid SERIAL PRIMARY KEY, senderid integer NOT NULL, receiverid integer NOT NULL, subject text, body text NOT NULL, ts TIMESTAMP not null)");
 
@@ -52,7 +52,7 @@ exports.messages = async(req,res,next) =>{
     res.render('message',{
         header:true,
         'conversation':allMessages,
-        'sessionid': req.session.user
+        'sessionid': req.session.SID
 
     });
 }
@@ -75,7 +75,7 @@ exports.sendMessageToUser=async(req,res, next)=>{
 
 exports.sendFirstMessageToUser = async(req, res, next)=>{
   //  req.session.userId = 7;
-  console.log("session user" + req.session.user);
+  console.log("session user" + req.session.SID);
     let subjectString = req.body.subject;
     let receiverid = req.body.receiverid;
     let detailsString = req.body.details;
@@ -83,7 +83,7 @@ exports.sendFirstMessageToUser = async(req, res, next)=>{
         subject:subjectString,
         receiver:receiverid,
         details:detailsString,
-        sender:req.session.user
+        sender:req.session.SID
 
 
 
