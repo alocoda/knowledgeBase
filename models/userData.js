@@ -1,5 +1,17 @@
 let db = require("../db/db");
 
+getID = async (email) => {
+    const query = `SELECT userprofileid FROM UserProfile WHERE email = $1`;
+    const values = [ email ];
+    try {
+        const res = await db.query(query, values);
+        return res.rows.length > 0 ? res.rows[0].userprofileid : 0;
+    } catch (err) {
+        console.log(err.stack);
+    }
+    return 0;
+}
+
 emailInUse = async (email) => {
     const query = `SELECT * FROM UserProfile WHERE email = $1`;
     const values = [ email ];
@@ -49,5 +61,6 @@ userSignUp = async (user) => {
 module.exports = {
     signup: userSignUp,
     login: userLogin,
-    email: emailInUse
+    email: emailInUse,
+    getid: getID
 };
