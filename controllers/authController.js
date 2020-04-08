@@ -7,8 +7,9 @@ exports.login = async (req, res, next) => {
     let pwd = req.body.pwd;
     let hash = await mod.login(email);
     let authenticated = await bcrypt.compare(pwd, hash);
-    if(authenticated) {
-        res.send('Authenticated!');
+    if (authenticated) {
+        req.session.userEmail = email;
+        res.redirect("/home")
     } else {
         res.send('No user found');
     }
@@ -23,6 +24,7 @@ exports.signup = async (req, res, next) => {
         email: req.body.email,
         pwd: hashedPwd
     }
+    req.session.userEmail = req.body.email
     req.session.user = userObj;
     res.render("signup");
 }

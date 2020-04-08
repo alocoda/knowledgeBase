@@ -1,5 +1,4 @@
-const db = require("../db/db");
-
+let db = require("../db/db");
 
 userLogin = async (email) => {
     const query = `SELECT password FROM UserProfile WHERE email = $1`;

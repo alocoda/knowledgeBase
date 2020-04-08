@@ -5,7 +5,7 @@ function getProfile (id) {
 }
 
 function getUserPost(id) {
-    return db.query("Select p.postid, p.title, p.explanation, p.topic, to_char(p.date,'DD-MM-YYYY'), up.imageurl, COUNT(r.replyid)  from posts p join userprofile up on p.authorid = up.userprofileid left Join public.replies r on p.postid = r.postid where p.authorid = " + id + "group by p.postid, up.imageurl order by p.date desc");
+    return db.query("Select p.postid, p.title, p.explanation, p.topic, to_char(p.date,'DD-MM-YYYY'), up.imageurl, COUNT(r.replyid)  from posts p join userprofile up on p.authorid = up.userprofileid left Join public.replies r on p.postid = r.postid where p.authorid = $1 group by p.postid, up.imageurl order by p.date desc", [id]);
 }
 
 function getNumPost(id) {
