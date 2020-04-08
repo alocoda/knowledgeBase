@@ -3,6 +3,7 @@ const express = require('express');
 const expressHbs = require('express-handlebars');
 const path = require('path');
 const session = require('express-session');
+const uuid = require('uuid/v4');
 const routes = require('./routes/routes');
 
 const app = express();
@@ -13,6 +14,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use(session({
+    genid: function(req) {
+        return uuid();
+    },
     secret: 'meow meow mix',
     resave: false,
     saveUninitialized: true

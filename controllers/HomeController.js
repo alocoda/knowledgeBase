@@ -9,7 +9,10 @@ async function latestPosts(req, res) {
     //checks to make sure we have posts
     console.log(req.session.userEmail)
     console.log(pdata[0])
-    if (data.length == 0) {
+    if(req.session.SID === undefined) {
+        res.redirect('/');
+    }
+    else if (data.length == 0) {
         res.render('home');
     }
     //renders posts with next button if their are more than 5 posts
@@ -112,6 +115,7 @@ async function filterPosts(req, res) {
 
 
 function logout(req, res) {
+    req.session.destroy();
     res.redirect('/');
 }
 

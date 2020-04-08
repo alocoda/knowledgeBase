@@ -28,7 +28,7 @@ userSignUp = async (user) => {
     const query = `INSERT INTO UserProfile 
         (firstname, lastname, email, password, imageurl, about, country, dob)
         VALUES
-        ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`;
+        ($1, $2, $3, $4, $5, $6, $7, $8)`;
     const values = [
         user.fname,
         user.lname,
@@ -40,8 +40,7 @@ userSignUp = async (user) => {
         user.birthdate
     ];
     try {
-        const res = await db.query(query, values);
-        console.log(res.rows[0]);
+        await db.query(query, values);
     } catch (err) {
         console.log(err.stack);
     }
