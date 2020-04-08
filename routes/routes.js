@@ -8,7 +8,11 @@ const postController = require('../controllers/postController');
 
 
 router.get('/', (req, res) => {
-    res.render('index');
+    if(req.session.SID !== undefined) {
+        res.redirect('/home');
+    } else {
+        res.render('index');
+    }
 });
 
 router.get('/login', (req, res) => {
