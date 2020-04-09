@@ -44,7 +44,7 @@
                                 <div class="post-label">{{this.topic}}</div>
                             </div>
                             <p class="post-details homeProfile-dmargin">{{this.explanation}}</p>
-                            <form action="/reply" method="GET" id='post-extra-data' class="container-flex-horz homeProfile-dmargin">
+                            <form action="/post/{{this.postid}}" method="GET" id='post-extra-data' class="container-flex-horz homeProfile-dmargin">
                                 <label class="post-date">{{this.date}}</label>
                                 <button class="post-replies">replies {{this.c}}</button>
                             </form>
