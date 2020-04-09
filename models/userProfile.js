@@ -18,12 +18,11 @@ function addLike(id) {
 
 updateUser = async (user) => {
     const query = `UPDATE UserProfile SET
-        firstname = $1, lastname = $2, password = $3, imageurl = $4, about = $5, country = $6, dob = $7
-        WHERE userprofileid = $8`;
+        firstname = $1, lastname = $2, imageurl = $3, about = $4, country = $5, dob = $6
+        WHERE userprofileid = $7`;
     const values = [
         user.fname,
         user.lname,
-        user.pwd,
         user.image,
         user.details,
         user.country,
