@@ -3,7 +3,6 @@ let mod = require('../models/userProfile');
 exports.getProfile = async (req, res, next) => {
     let id = req.params.id;
     let sessionEmail = req.session.userEmail;
-    // console.log(sessionEmail);
     let profile = await mod.getProfile(id);
     if (profile.rows[0].email != sessionEmail) {
         let posts = await mod.getUserPost(id);
@@ -17,8 +16,6 @@ exports.getProfile = async (req, res, next) => {
 
 exports.addLike = async (req, res, next) => {
     let id = req.params.id;
-    console.log(id);
-    //let sessionEmail = req.session.userEmail;
     await mod.addLike(id);
     res.redirect("/profile/" + id);
 }

@@ -1,40 +1,17 @@
-
-//"{senderid:7, sendername:a a, receiverid:3, receivername:Jotaro Kujo, subject:asdf, message:fff,timestamp:Sun Apr 05 2020 16:18:16 GMT-0700 (Pacific Daylight Time)}"
-/**
- * 
- * senderid: 7
-    sendername: "a a"
-    receiverid: 3
-    receivername: "Jotaro Kujo"
-    subject: "asdf"
-    message: "fff"
-    timestamp: "Sun Apr 05 2020 16:18:16 GMT-0700 (Pacific Daylight Time)"
- * 
- */
 var currentPersonBeingMessaged = null;
 let msgArray = [];
 let sessionID = document.getElementById("sessionid").textContent;
+
 //step 1: get all messages, messages are stored in JSON object, each item in msgArray is a JSON message object.
 document.getElementById("sendbtn").disabled = true;
 
 msgArray = getJSONArray(msgArray);
 
-for(let i = 0; i < msgArray.length; i++){
-    console.log(msgArray[i]);
-}
-
 var check3 = getMessagesThatInvolveID(2,msgArray );
-console.log("!!!!!!!!!!!!!!!!!");
-for(let i = 0; i < check3.length; i++){
-    console.log(check3[i].message);
-}
-console.log("!!!!!!!!!!!!!!!!!");
 
 function createSubjectSideBar(){
 
 }
-//addSubjectDOM("let me sleep", "https://www.cbronline.com/wp-content/uploads/2016/06/what-is-URL-770x503.jpg" , "SUBJECT", "Jan 12", 2);
-//addSubjectDOM("let me stay awake", "https://static.techspot.com/images2/news/bigimage/2018/09/2018-09-04-image-6.png" , "subject2", "Jan 13", 3);
 subjectLoader();
 function subjectLoader(){
     let hashmap = {};
@@ -64,7 +41,6 @@ function subjectLoader(){
     }
     //To fetch all:
     for(var key in hashmap){
-        console.log('key is :' + key + ' and value is : '+ hashmap[key].subject)
         let monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
         addSubjectDOM(hashmap[key].profilename,hashmap[key].profileurl, hashmap[key].profilesubject, monthNames[hashmap[key].profiledate.getMonth()] + " " + hashmap[key].profiledate.getDate() , hashmap[key].profileid);
@@ -130,7 +106,6 @@ function loadMessages(userid){
     let monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
     addTime( monthArray[date.getMonth()  ]+ " "+ date.getDate());
-    console.log(" yeah yeah yeayhdate.getDay()"+date.getDate());
 
 
     for(let i = 0; i < messagesArray.length; i++){
@@ -138,8 +113,6 @@ function loadMessages(userid){
         if(date.getYear() !=curProfile.timestamp.getYear() || date.getMonth() != curProfile.timestamp.getMonth() || date.getDate() != curProfile.timestamp.getDate()){
             date=curProfile.timestamp;
             let monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-            console.log("messagearray position" + i);
-            console.log(" yeah yeah yeayhdate.getDay()"+date.getDate());
 
             addTime( monthArray[date.getMonth()  ]+ " "+ date.getDate());
         }
@@ -236,7 +209,6 @@ function getMessagesThatInvolveID(id, array){
             array[i];
         }
     }
-   //console.log("hello this is the map" + map);
     return newIDArray;
 }
 function getJSONArray(arrayIncoming){
@@ -245,7 +217,6 @@ function getJSONArray(arrayIncoming){
     
     for (let i = 0; i < pchildren.length; i++) {
         array[i] = JSON.parse("{" + pchildren[i].textContent + "}");
-        console.log(array[i].timestamp);
         array[i].timestamp = convertTStoDate(array[i].timestamp);
     }
     return array;
@@ -255,19 +226,15 @@ function getJSONArray(arrayIncoming){
 function convertTStoDate(dateString){
   //  timestamp: "Sun Apr 05 2020 16:18:16 GMT-0700 (Pacific Daylight Time)"
     dateArray = dateString.split(" ");
-    console.log("datearay[1]" + dateArray[1]);
     timeArray = dateArray[4].split(":");
     let month = 0;
 
    //month to number function
     let monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    console.log(dateArray[1] == monthArray[3]);
     for(let i = 0; i < monthArray.length; i++){
-        console.log("month+1" + month);
 
         if(dateArray[1] == monthArray[i]){
             month = i ;
-            console.log("month+1" + month);
             break;
         }
     }
