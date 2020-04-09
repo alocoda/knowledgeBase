@@ -43,6 +43,7 @@ exports.signupdetails = async (req, res) => {
     userObj.birthdate = req.body.birthdate;
     try {
         await mod.signup(userObj);
+        req.session.SID = await mod.getid(userObj.email);
     } catch (err) {
         console.log(err);
     }
