@@ -3,7 +3,7 @@ const express = require('express');
 const expressHbs = require('express-handlebars');
 const path = require('path');
 const session = require('express-session');
-const uuid = require('uuid/v4');
+const { v4: uuid } = require('uuid');
 const routes = require('./routes/routes');
 
 const app = express();

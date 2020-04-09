@@ -1,8 +1,5 @@
 let db = require("../models/Home");
-const mod = require("../models/userData");
 const uProfile = require("../models/userProfile");
-const bcrypt = require('bcrypt');
-const saltRounds = 10;
 
 
 
@@ -155,12 +152,9 @@ editProfile = async (req, res) => {
 }
 
 updateProfile = async (req, res) => {
-    let salt = await bcrypt.genSalt(saltRounds);
-    let hashedPwd = await bcrypt.hash(req.body.pwd, salt);
     let userObj = {
         fname: req.body.fname,
         lname: req.body.lname,
-        pwd: hashedPwd,
         image: req.body.image,
         details: req.body.details,
         country: req.body.country,

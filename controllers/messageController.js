@@ -108,7 +108,9 @@ exports.sendFirstMessageToUser = async(req, res, next)=>{
         console.log('Email sent: ' + info.response);
         }
     });
-    res.redirect(301, "/" ) 
+    
+    await messageModel.increaseMsgCount(req.body.receiverid, req.session.SID);
+    res.redirect("/profile/" + req.body.receiverid);
 }
 
 

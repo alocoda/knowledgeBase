@@ -141,9 +141,15 @@ createMessage = async(convoObj)=>{
     }
 };
 
+increaseMsgCount = (r, s) => {
+    db.query("Update userprofile Set messages = messages + 1 Where userprofileid = " + r +
+     " OR userprofileid = " + s);
+}
+
 module.exports = {
     getUserProfile: getUserProfile,
     createConversation:createConversation,
     getAllMessages:getAllMessages,
-    createMessage:createMessage
+    createMessage:createMessage,
+    increaseMsgCount:increaseMsgCount
 };
