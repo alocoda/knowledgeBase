@@ -7,8 +7,6 @@ async function latestPosts(req, res) {
     var data = await db.getLatestPosts();
     var pdata = await db.loadProfile(req.session.userEmail);
     //checks to make sure we have posts
-    console.log(req.session.userEmail)
-    console.log(pdata[0])
     if (req.session.SID === undefined) {
         res.redirect('/');
     }
@@ -102,7 +100,6 @@ async function newPost(req, res) {
 
 async function search(req, res) {
     var data = await db.searchPosts(req.query.search);
-    console.log(data);
     res.render("posts", { "post": data });
 }
 
@@ -118,16 +115,6 @@ function logout(req, res) {
     req.session.destroy();
     res.redirect('/');
 }
-
-
-// async function getMyProfile(req, res) {
-//     var profiledata = await db.getProfile(req.session.userEmail);
-//     console.log(profiledata[0])
-//     var postdata = await db.getUserPosts(profiledata[0].userprofileid);
-//     res.render("homeProfile", { "post": postdata, "pdata": profiledata[0] })
-
-// }
-
 
 async function getProfile(req, res) {
     var profiledata = await db.getProfile(req.query.profileid);

@@ -17,23 +17,16 @@ let transporter = nodemailer.createTransport({
 
 //!!-- Function: LOADS THE PAGE.
 exports.sendMessage = async (req, res, next) => {
-    //req.session.userId = 8;
 
     let messageReceiverid =  req.query.id;
-  //  console.log("???????????????" + messageReceiverid);
-    //TODO make it so ID is from the req body or something idk lol
     
     let  userBeingMessaged = await messageModel.getUserProfile(messageReceiverid);
-  //  console.log("req.session.userID: ???" + req.session.SID);
     res.render('sendMessage', {
         header: true,
         imageurl: userBeingMessaged[0].imageurl,
         receiverid: userBeingMessaged[0].userprofileid,
         sender_id: req.session.SID
     });
-
-  // console.log("sendMessage : userBeingMessaged" + userBeingMessaged[0].imageurl);
-  // console.log("sendMessage : userBeingMessaged" + userBeingMessaged[0].id);
 
 }
 
@@ -44,11 +37,6 @@ exports.sendMessage = async (req, res, next) => {
 exports.messages = async(req,res,next) =>{
 //    req.session.userId = 7;
     let allMessages = await messageModel.getAllMessages(req.session.SID);
-    
-    //db.query("CREATE TABLE messages (messageid SERIAL PRIMARY KEY, senderid integer NOT NULL, receiverid integer NOT NULL, subject text, body text NOT NULL, ts TIMESTAMP not null)");
-
-  
-  //  console.log("Allmessages length!!!" + allMessages.length );
     res.render('message',{
         header:true,
         'conversation':allMessages,
@@ -69,13 +57,10 @@ exports.sendMessageToUser=async(req,res, next)=>{
     }
     let userBeingMessaged = await messageModel.createMessage(messageObject);
     res.redirect('/message');
- //   res.redirect(301, "/message" );
 
 }
 
 exports.sendFirstMessageToUser = async(req, res, next)=>{
-  //  req.session.userId = 7;
-//  console.log("session user" + req.session.SID);
     let subjectString = req.body.subject;
     let receiverid = req.body.receiverid;
     let detailsString = req.body.details;
@@ -94,7 +79,6 @@ exports.sendFirstMessageToUser = async(req, res, next)=>{
 
     let  userBeingMessagedProf = await messageModel.getUserProfile(userBeingMessaged.receiverid);
     userBeingMessagedProf=userBeingMessagedProf[0];
- //   console.log("userBeingMessaged.receiverid" + userBeingMessaged.email);
     var mailOptions = {
         from: 'knowledgebase.4711.xd@gmail.com',
         to: userBeingMessagedProf.email,
@@ -104,8 +88,6 @@ exports.sendFirstMessageToUser = async(req, res, next)=>{
     transporter.sendMail(mailOptions, function(error, info){
         if (error) {
         console.log("emailError"+error);
-        } else {
-       // console.log('Email sent: ' + info.response);
         }
     });
     

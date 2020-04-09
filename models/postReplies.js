@@ -9,7 +9,6 @@ function getPostReplies(id) {
 }
 
 function getAuthorid(email) {
-    console.log(email);
     return db.query("Select userprofileid from userprofile where email = $1", [email]);
 }
 

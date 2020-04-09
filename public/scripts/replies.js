@@ -5,7 +5,6 @@ userReplyButton.disabled = true;
 
 userReplyBody.addEventListener("keyup", () => {
     if (userReplyBody.value.trim().length > 0) {
-        // console.log(userReplyBody.value);
         userReplyButton.disabled = false;
     } else {
         userReplyButton.disabled = true;

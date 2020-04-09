@@ -84,7 +84,6 @@ async function insertPost(userEmail, title, explanation, topic) {
 async function getMostRecentPostId() {
     try {
         let data = await db.query(`SELECT postid FROM posts WHERE date = (Select MAX(date) FROM posts)`)
-        console.log(data.rows)
         return data.rows;
     } catch (err) {
         console.log(err)
@@ -122,7 +121,6 @@ async function searchPosts(searchParam) {
 
 async function getFilteredPosts(searchParam) {
     try {
-        console.log(searchParam)
         let data = await db.query(`SELECT u.userprofileid, p.postid, p.authorid, p.title, p.topic, p.explanation, 
         to_char (p.date, 'yyyy-MM-DD')as date, p.c, u.imageurl
         FROM (SELECT COUNT(replies.postid) as c, posts.topic as topic,posts.postid as postid, posts.authorid as authorid, title, explanation, 
@@ -138,7 +136,6 @@ async function getFilteredPosts(searchParam) {
 
 async function getProfile(id) {
     try {
-        console.log(id)
         let data = await db.query(`SELECT COUNT(p.postid),userprofileid, email, firstname, lastname, imageurl, likes, 
         ROUND(likes)as likes, ROUND(messages) as messages, about
         FROM userprofile as u left join posts as p on u.userprofileid = p.authorid
@@ -158,7 +155,6 @@ async function getUserPosts(userid) {
         u.imageurl FROM (SELECT COUNT(replies.postid) as c, posts.topic as topic,posts.postid as postid, posts.authorid as authorid, title, explanation, 
         posts.date as date FROM posts left join replies on posts.postid = replies.postid GROUP BY posts.postid) as p inner join userProfile as u on p.authorid = u.userprofileid
         WHERE u.userprofileid = $1 ORDER BY p.date DESC`, [userid])
-        console.log(data.rows)
         return data.rows;
     } catch (err) {
         console.log(err.stack)
