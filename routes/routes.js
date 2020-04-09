@@ -38,6 +38,10 @@ router.post('/sendMessageToUser', messageController.sendMessageToUser);
 //router.post('/beginMessage', messageController.beginMessageMessage);
 router.get('/message', messageController.messages);
 
+router.get('/edit', homeController.editProfile)
+
+router.post('/edit', homeController.updateProfile)
+
 router.get('/home', homeController.latestPosts)
 
 router.get('/nextpost', homeController.latestPostsNext)

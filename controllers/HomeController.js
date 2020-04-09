@@ -1,5 +1,8 @@
 let db = require("../models/Home");
-
+const mod = require("../models/userData");
+const uProfile = require("../models/userProfile");
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 
 
@@ -9,7 +12,7 @@ async function latestPosts(req, res) {
     //checks to make sure we have posts
     console.log(req.session.userEmail)
     console.log(pdata[0])
-    if(req.session.SID === undefined) {
+    if (req.session.SID === undefined) {
         res.redirect('/');
     }
     else if (data.length == 0) {
@@ -132,19 +135,46 @@ function logout(req, res) {
 async function getProfile(req, res) {
     var profiledata = await db.getProfile(req.query.profileid);
     var postdata = await db.getUserPosts(profiledata[0].userprofileid);
-    if (profiledata[0].email ==req.session.userEmail) {
+    if (profiledata[0].email == req.session.userEmail) {
         res.render("homeProfile", { "post": postdata, "pdata": profiledata[0] })
     }
     else {
         res.send("other profile")
     }
-    
+
 
 }
 
+editProfile = async (req, res) => {
+    if(req.session.SID !== undefined) {
+        var profiledata = await db.getProfile(req.session.SID);
+        res.render("editProfile", { "pdata": profiledata[0] });
+    } else {
+        res.redirect('/');
+    }
+}
 
-
-
+updateProfile = async (req, res) => {
+    let salt = await bcrypt.genSalt(saltRounds);
+    let hashedPwd = await bcrypt.hash(req.body.pwd, salt);
+    let userObj = {
+        fname: req.body.fname,
+        lname: req.body.lname,
+        pwd: hashedPwd,
+        image: req.body.image,
+        details: req.body.details,
+        country: req.body.country,
+        birthdate: req.body.birthdate,
+        id: req.session.SID
+    }
+    try {
+        await uProfile.updateUser(userObj);
+        //req.session.SID = userObj.id;
+    } catch (err) {
+        console.log(err);
+    }
+    res.redirect("/home");
+}
 
 
 
@@ -159,5 +189,7 @@ module.exports = {
     search: search,
     filterPosts: filterPosts,
     logout: logout,
-    getProfile: getProfile
+    getProfile: getProfile,
+    editProfile: editProfile,
+    updateProfile: updateProfile
 }
