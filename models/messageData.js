@@ -60,10 +60,10 @@ createConversation = async(convoObj)=>{
         ($1, $2, $3, $4, $5, $6, $7, $8, to_timestamp(${Date.now()} / 1000.0)) RETURNING *`;
     const values = [
         convoObj.sender,
-        sender[0].image,
+        sender[0].imageurl,
         sender[0].firstname + " " + sender[0].lastname, 
         convoObj.receiver,
-        receiver[0].image,
+        receiver[0].imageurl,
         receiver[0].firstname + " " + receiver[0].lastname, 
         convoObj.subject,
         convoObj.details
