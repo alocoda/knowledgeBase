@@ -1,7 +1,7 @@
 let db = require('../db/db');
 
 function getProfile (id) {
-    return db.query("Select userprofileid, firstname, lastname, email, imageurl, about, country, ROUND(likes) from userprofile where userprofileid = " + id);
+    return db.query("Select userprofileid, firstname, lastname, email, imageurl, about, country, dob, ROUND(likes) from userprofile where userprofileid = " + id);
 }
 
 function getUserPost(id) {
@@ -16,9 +16,31 @@ function addLike(id) {
     db.query("Update userprofile Set likes = likes + 1 Where userprofileid = " + id);
 }
 
+updateUser = async (user) => {
+    const query = `UPDATE UserProfile SET
+        firstname = $1, lastname = $2, password = $3, imageurl = $4, about = $5, country = $6, dob = $7
+        WHERE userprofileid = $8`;
+    const values = [
+        user.fname,
+        user.lname,
+        user.pwd,
+        user.image,
+        user.details,
+        user.country,
+        user.birthdate,
+        user.id
+    ];
+    try {
+        await db.query(query, values);
+    } catch (err) {
+        console.log(err.stack);
+    }
+};
+
 module.exports = {
     getProfile : getProfile,
     getUserPost : getUserPost,
     getNumPost : getNumPost,
-    addLike : addLike
+    addLike : addLike,
+    updateUser: updateUser
 }
