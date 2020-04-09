@@ -11,7 +11,10 @@
             <div>{{profileInfo.country}}</div>
             </div>
          <div class = "userPostInfo--profile">
-            <button class = "button--profile" id = "btnMsg--profile">Message</button>
+             <form action = "/sendMessage" method = "get">
+                <input type="hidden" name="id" value="{{profileInfo.userprofileid}}">
+                <button class = "button--profile" id = "btnMsg--profile">Message</button>
+             </form>   
             <br/>
             <div class = "numLike--profile">{{profileInfo.round}} Likes</div> 
             <form action = "/addLike/{{profileInfo.userprofileid}}" method = "post">
