@@ -20,11 +20,11 @@ exports.sendMessage = async (req, res, next) => {
     //req.session.userId = 8;
 
     let messageReceiverid =  req.query.id;
-    console.log("???????????????" + messageReceiverid);
+  //  console.log("???????????????" + messageReceiverid);
     //TODO make it so ID is from the req body or something idk lol
     
     let  userBeingMessaged = await messageModel.getUserProfile(messageReceiverid);
-    console.log("req.session.userID: ???" + req.session.SID);
+  //  console.log("req.session.userID: ???" + req.session.SID);
     res.render('sendMessage', {
         header: true,
         imageurl: userBeingMessaged[0].imageurl,
@@ -32,7 +32,7 @@ exports.sendMessage = async (req, res, next) => {
         sender_id: req.session.SID
     });
 
-   console.log("sendMessage : userBeingMessaged" + userBeingMessaged[0].imageurl);
+  // console.log("sendMessage : userBeingMessaged" + userBeingMessaged[0].imageurl);
   // console.log("sendMessage : userBeingMessaged" + userBeingMessaged[0].id);
 
 }
@@ -48,7 +48,7 @@ exports.messages = async(req,res,next) =>{
     //db.query("CREATE TABLE messages (messageid SERIAL PRIMARY KEY, senderid integer NOT NULL, receiverid integer NOT NULL, subject text, body text NOT NULL, ts TIMESTAMP not null)");
 
   
-    console.log("Allmessages length!!!" + allMessages.length );
+  //  console.log("Allmessages length!!!" + allMessages.length );
     res.render('message',{
         header:true,
         'conversation':allMessages,
@@ -75,7 +75,7 @@ exports.sendMessageToUser=async(req,res, next)=>{
 
 exports.sendFirstMessageToUser = async(req, res, next)=>{
   //  req.session.userId = 7;
-  console.log("session user" + req.session.SID);
+//  console.log("session user" + req.session.SID);
     let subjectString = req.body.subject;
     let receiverid = req.body.receiverid;
     let detailsString = req.body.details;
@@ -94,7 +94,7 @@ exports.sendFirstMessageToUser = async(req, res, next)=>{
 
     let  userBeingMessagedProf = await messageModel.getUserProfile(userBeingMessaged.receiverid);
     userBeingMessagedProf=userBeingMessagedProf[0];
-    console.log("userBeingMessaged.receiverid" + userBeingMessaged.email);
+ //   console.log("userBeingMessaged.receiverid" + userBeingMessaged.email);
     var mailOptions = {
         from: 'knowledgebase.4711.xd@gmail.com',
         to: userBeingMessagedProf.email,
@@ -105,7 +105,7 @@ exports.sendFirstMessageToUser = async(req, res, next)=>{
         if (error) {
         console.log("emailError"+error);
         } else {
-        console.log('Email sent: ' + info.response);
+       // console.log('Email sent: ' + info.response);
         }
     });
     
