@@ -37,9 +37,9 @@ getAllMessages = async(id) =>{
         
         //const res = await db.query(query);
 
-        console.log(" all messages sent succses!");
-        console.log("messages");
-        console.log("nani222222sleepy"+res.rows.length);
+      //  console.log(" all messages sent succses!");
+      //  console.log("messages");
+      //  console.log("nani222222sleepy"+res.rows.length);
         return res.rows;
     } catch (err) {
         console.log(err.stack);
@@ -51,7 +51,7 @@ getAllMessages = async(id) =>{
 
 createConversation = async(convoObj)=>{
     let sender = await getUserProfile( convoObj.sender);
-    console.log("why are you breaking?" + sender[0].userprofileid);
+//    console.log("why are you breaking?" + sender[0].userprofileid);
 
     let receiver = await getUserProfile(convoObj.receiver);
     const query = `INSERT INTO Messages 
@@ -70,15 +70,15 @@ createConversation = async(convoObj)=>{
         
     ];
     try {
-        console.log("before message sent succses!");
+ //       console.log("before message sent succses!");
 
         const res = await db.query(query, values);
-        console.log("message sent succses!");
-        console.log("nani2"+res.rows[0].subject);
-        console.log("nani2"+res.rows[0].messageid);
+ //       console.log("message sent succses!");
+//        console.log("nani2"+res.rows[0].subject);
+  //      console.log("nani2"+res.rows[0].messageid);
         
         return res.rows;
-        console.log(res.rows);
+ //       console.log(res.rows);
     } catch (err) {
         console.log(err.stack);
         return null;
@@ -131,9 +131,9 @@ createMessage = async(convoObj)=>{
     try {
         console.log("before createMessage sent succses!");
         const res = await db.query(query, values);
-        console.log("createMessage: message sent succses!");
-        console.log("createMessage nani2"+res.rows[0].subject);
-        console.log("createMessage nani2"+res.rows[0].messageid);
+ //       console.log("createMessage: message sent succses!");
+ //       console.log("createMessage nani2"+res.rows[0].subject);
+//        console.log("createMessage nani2"+res.rows[0].messageid);
         return res.rows;
     } catch (err) {
         console.log(err.stack);
