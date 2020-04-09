@@ -139,7 +139,7 @@ async function getFilteredPosts(searchParam) {
 async function getProfile(id) {
     try {
         console.log(id)
-        let data = await db.query(`SELECT COUNT(*),userprofileid, email, firstname, lastname, imageurl, likes, 
+        let data = await db.query(`SELECT COUNT(p.postid),userprofileid, email, firstname, lastname, imageurl, likes, 
         ROUND(likes)as likes, ROUND(messages) as messages, about
         FROM userprofile as u left join posts as p on u.userprofileid = p.authorid
         WHERE u.userprofileid = $1 GROUP BY u.userprofileid`, [id])
